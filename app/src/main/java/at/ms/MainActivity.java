@@ -40,9 +40,8 @@ public class MainActivity extends Activity
 			btCo1.setBackgroundColor(Color.BLACK);
 			bCoLampe1=false;}
 		else {
-			btCo1.setTextColor(Color.RED);
-			btCo1.setTextColor(Color.parseColor("#8792F2"));
-			btCo1.setBackgroundColor(Color.BLACK);
+			btCo1.setTextColor(Color.BLACK);
+			btCo1.setBackgroundColor(Color.parseColor("#FFEF4F"));
 			bCoLampe1=true;}
 	}
 	
