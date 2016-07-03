@@ -1,5 +1,9 @@
 [
     {
+        "merged": "G:\\AndroidProjects\\LightSwitch\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\roundedborder.xml",
+        "source": "G:\\AndroidProjects\\LightSwitch\\app\\src\\main\\res\\drawable-hdpi\\roundedborder.xml"
+    },
+    {
         "merged": "G:\\AndroidProjects\\LightSwitch\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4\\ic_launcher.png",
         "source": "G:\\AndroidProjects\\LightSwitch\\app\\src\\main\\res\\drawable-hdpi\\ic_launcher.png"
     }
