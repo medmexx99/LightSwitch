@@ -16,6 +16,7 @@ public class MainActivity extends Activity
 	Button btEt1;
 	Button btEt2;
 	
+	
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
