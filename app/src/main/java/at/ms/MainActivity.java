@@ -2,6 +2,7 @@ package at.ms;
 
 import android.app.*;
 import android.graphics.*;
+import android.graphics.drawable.*;
 import android.os.*;
 import android.view.*;
 import android.widget.*;
@@ -21,6 +22,8 @@ public class MainActivity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 		btCo1 = (Button) findViewById(R.id.btCoLampe1);
+		//ShapeDrawable shape = (ShapeDrawable) btCo1.getBackground();
+		//shape.getPaint().setColor(Color.BLACK);
 		//btCo1.setBackgroundColor(Color.BLACK);
 		btCo1.setTextColor(Color.parseColor("#8792F2"));
 		btCo2 = (Button) findViewById(R.id.btCoLampe2);
@@ -39,11 +42,15 @@ public class MainActivity extends Activity
 		
 		if(bCoLampe1) {
 			btCo1.setTextColor(Color.parseColor("#8792F2"));
-			btCo1.setBackgroundColor(Color.BLACK);
+			//btCo1.setBackgroundColor(Color.BLACK);
+			GradientDrawable shape = (GradientDrawable) btCo1.getBackground();
+			shape.setColor(Color.BLACK);
 			bCoLampe1=false;}
 		else {
 			btCo1.setTextColor(Color.BLACK);
-			btCo1.setBackgroundColor(Color.parseColor("#FFEF4F"));
+			//btCo1.setBackgroundColor(Color.parseColor("#FFEF4F"));
+			GradientDrawable shape = (GradientDrawable) btCo1.getBackground();
+			shape.setColor(Color.parseColor("#FFEF4F"));
 			bCoLampe1=true;}
 	}
 	

@@ -72,7 +72,8 @@
 				android:layout_gravity="center_horizontal"
 				android:onClick="switchCoLampe1"
 				android:id="@+id/btCoLampe1"
-				android:layout_margin="5dp"/>
+				android:layout_margin="5dp"
+				android:background="@drawable/roundedborder"/>
 
 			<Button
 				android:layout_height="wrap_content"
