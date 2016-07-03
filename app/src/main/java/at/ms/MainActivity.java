@@ -1,10 +1,12 @@
 package at.ms;
 
 import android.app.*;
+import android.graphics.*;
 import android.os.*;
 import android.view.*;
 import android.widget.*;
-import android.graphics.*;
+import java.io.*;
+import java.net.*;
 
 public class MainActivity extends Activity 
 {
@@ -19,7 +21,7 @@ public class MainActivity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 		btCo1 = (Button) findViewById(R.id.btCoLampe1);
-		btCo1.setBackgroundColor(Color.BLACK);
+		//btCo1.setBackgroundColor(Color.BLACK);
 		btCo1.setTextColor(Color.parseColor("#8792F2"));
 		btCo2 = (Button) findViewById(R.id.btCoLampe2);
 		btCo2.setBackgroundColor(Color.BLACK);
@@ -53,7 +55,8 @@ public class MainActivity extends Activity
 			btCo2.setBackgroundColor(Color.BLACK);
 			bCoLampe2=false;}
 		else {
-			btCo2.setTextColor(Color.RED);
+			btCo2.setTextColor(Color.BLACK);
+			btCo2.setBackgroundColor(Color.parseColor("#FFEF4F"));
 			bCoLampe2=true;}
 	}
 	
@@ -65,7 +68,8 @@ public class MainActivity extends Activity
 			btEt1.setBackgroundColor(Color.BLACK);
 			bEtLampe1=false;}
 		else {
-			btEt1.setTextColor(Color.RED);
+			btEt1.setTextColor(Color.BLACK);
+			btEt1.setBackgroundColor(Color.parseColor("#FFEF4F"));
 			bEtLampe1=true;}
 	}
 	
@@ -77,8 +81,27 @@ public class MainActivity extends Activity
 			btEt2.setBackgroundColor(Color.BLACK);
 			bEtLampe2=false;}
 		else {
-			btEt2.setTextColor(Color.RED);
+			btEt2.setTextColor(Color.BLACK);
+			btEt2.setBackgroundColor(Color.parseColor("#FFEF4F"));
 			bEtLampe2=true;}
+	}
+	
+	private void getStatus() {
+		Socket client;
+		
+
+		try{
+			InetAddress clientAddress = InetAddress.getByName("192.168.0.150");
+			client = new Socket(clientAddress, 80);
+			PrintWriter out = new PrintWriter(client.getOutputStream(),true);
+			BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
+
+		} catch(UnknownHostException e) {
+			System.out.println("Unknown host: www.example.com");
+
+		} catch(IOException e) {
+			System.out.println("No I/O");
+		}
 	}
 	
 }
