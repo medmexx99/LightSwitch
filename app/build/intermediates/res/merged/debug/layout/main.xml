@@ -4,7 +4,7 @@
 	android:layout_height="match_parent"
 	android:layout_width="match_parent"
 	android:orientation="vertical"
-	android:background="#4C864A">
+	>
 
 	<LinearLayout
 		android:layout_height="wrap_content"
@@ -25,20 +25,20 @@
 				android:text="Esstisch"
 				android:layout_gravity="center_horizontal"
 				android:id="@+id/esstischTextView"
-				android:textColor="#FFFFFF"/>
+				/>
 
-			<Button
+			<ToggleButton
 				android:layout_height="wrap_content"
 				android:layout_width="wrap_content"
 				android:text="Lampe 1"
 				android:layout_gravity="center_horizontal"
 				android:onClick="switchLampe"
 				android:id="@+id/btEtLampe1"
-				android:textColor="#8792F2"
+				android:background="@drawable/roundedborder"
 				android:layout_margin="5dp"
-				android:background="@drawable/roundedborder"/>
+				/>
 
-			<Button
+			<ToggleButton
 				android:layout_height="wrap_content"
 				android:layout_width="wrap_content"
 				android:text="Lampe 2"
@@ -46,7 +46,6 @@
 				android:onClick="switchLampe"
 				android:id="@+id/btEtLampe2"
 				android:background="@drawable/roundedborder"
-				android:textColor="#8792F2"
 				android:layout_margin="5dp"/>
 
 		</LinearLayout>
@@ -63,9 +62,9 @@
 				android:textAppearance="?android:attr/textAppearanceLarge"
 				android:text="Couch"
 				android:layout_gravity="center_horizontal"
-				android:textColor="#FFFFFF"/>
+				/>
 
-			<Button
+			<ToggleButton
 				android:layout_height="wrap_content"
 				android:layout_width="wrap_content"
 				android:text="Lampe 1"
@@ -74,9 +73,9 @@
 				android:id="@+id/btCoLampe1"
 				android:layout_margin="5dp"
 				android:background="@drawable/roundedborder"
-				android:textColor="#8792F2"/>
+				/>
 
-			<Button
+			<ToggleButton
 				android:layout_height="wrap_content"
 				android:layout_width="wrap_content"
 				android:text="Lampe 2"
@@ -85,7 +84,7 @@
 				android:id="@+id/btCoLampe2"
 				android:layout_margin="5dp"
 				android:background="@drawable/roundedborder"
-				android:textColor="#8792F2"/>
+				/>
 
 		</LinearLayout>
 
@@ -99,7 +98,7 @@
 		android:text="sendTextView"
 		android:layout_margin="2dp"
 		android:background="@drawable/roundedborder"
-		android:textColor="#8792F2"
+
 		/>
 
 	<TextView
@@ -110,7 +109,7 @@
 		android:text="receiveTextView"
 		android:layout_margin="2dp"
 		android:background="@drawable/roundedborder"
-		android:textColor="#8792F2"
+
 		/>
 
 </LinearLayout>

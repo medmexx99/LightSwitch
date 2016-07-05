@@ -14,6 +14,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -37,6 +40,11 @@ public class MainActivity extends Activity {
 	final int btCo2Id = R.id.btCoLampe2;
 	final int btEt1Id = R.id.btEtLampe1;
 	final int btEt2Id = R.id.btEtLampe2;
+
+	public static final String KEY_network_address_couch = "network_address_couch";
+	public static final String KEY_network_port_couch = "network_port_couch";
+	public static final String KEY_network_address_diningtable = "network_address_diningtable";
+	public static final String KEY_network_port_diningtable = "network_port_diningtable";
 
 	@Override
     protected void onCreate(Bundle savedInstanceState)
@@ -72,9 +80,26 @@ public class MainActivity extends Activity {
 			Button button = (Button)view;
 			int id = button.getId();
 			boolean lightState = false;
+			String lightServer = "";
+			int lightPort = 80;
+			String lightId = "";
 			switch(id) {
 				case btCo1Id:
 					lightState = bCoLampe1;
+					lightId = "light1";
+					try {
+						InetAddress server = InetAddress.getByName(getSettingsFor(KEY_network_address_couch));
+						lightPort = Integer.parseInt(getSettingsFor(KEY_network_port_couch));
+						String message = "{\"switchLights\":{\""+lightId+"\":\""+(lightState ? "ON" : "OFF")+"\"}}";
+						String response = TcpClient.getInstance().send(server,lightPort,message);
+						JSONObject status = new JSONObject(response);
+						JSONObject light1 = status.getJSONObject("light1");
+					} catch (UnknownHostException e) {
+						e.printStackTrace();
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}
+
 					break;
 				case btCo2Id:
 					lightState = bCoLampe2;
@@ -89,13 +114,13 @@ public class MainActivity extends Activity {
 					break;
 			}
 			if (lightState) {
-				button.setTextColor(Color.parseColor("#8792F2"));
+				//button.setTextColor(Color.parseColor("#8792F2"));
 				//btCo1.setBackgroundColor(Color.BLACK);
 				GradientDrawable shape = (GradientDrawable) button.getBackground();
-				shape.setColor(Color.BLACK);
+				shape.setColor(Color.WHITE);
 				lightState = false;
 			} else {
-				button.setTextColor(Color.BLACK);
+				//button.setTextColor(Color.BLACK);
 				//btCo1.setBackgroundColor(Color.parseColor("#FFEF4F"));
 				GradientDrawable shape = (GradientDrawable) button.getBackground();
 				shape.setColor(Color.parseColor("#FFEF4F"));
@@ -118,6 +143,13 @@ public class MainActivity extends Activity {
 					break;
 			}
 		}
+	}
+
+	private String getSettingsFor(String key) {
+		String result = "";
+		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+		result = sharedPreferences.getString(key, null);
+		return result;
 	}
 	
 /*
