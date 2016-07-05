@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+            <TextView
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/couch"
+                android:id="@+id/couch"
+                android:layout_column="0" />
+
+            <EditText
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight=".5"
+                android:id="@+id/ipCouch"
+                android:text="192.168.0.150"
+                android:layout_column="1" />
+
+            <EditText
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight=".3"
+                android:id="@+id/portCouch"
+                android:layout_column="2"
+                android:text="80" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/diningTable"
+            android:id="@+id/diningTable"
+            android:layout_column="0" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:id="@+id/ipDiningTable"
+            android:layout_column="1"
+            android:text="192.168.0.151" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_weight=".3"
+            android:layout_height="wrap_content"
+            android:id="@+id/portDiningTable"
+            android:layout_column="2"
+            android:text="80" />
+    </TableRow>
+</TableLayout>

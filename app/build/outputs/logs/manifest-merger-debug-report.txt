@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml:2:1-21:12
+ADDED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml:2:1-28:12
 	package
 		ADDED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml:3:5-20
 		INJECTED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml
@@ -14,7 +14,7 @@ ADDED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml:2:1-2
 		INJECTED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml
 		INJECTED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml
 application
-ADDED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml:5:5-19:19
+ADDED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml:5:5-26:19
 	android:label
 		ADDED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml:8:9-41
 	android:allowBackup
@@ -24,21 +24,37 @@ ADDED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml:5:5-1
 	android:theme
 		ADDED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml:9:9-40
 activity#at.ms.MainActivity
-ADDED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml:10:9-18:20
+ADDED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml:10:9-17:20
 	android:label
 		ADDED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml:12:13-45
 	android:name
 		ADDED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml:11:13-41
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml:13:13-17:29
+ADDED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml:13:13-16:29
 action#android.intent.action.MAIN
 ADDED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml:14:17-69
 	android:name
 		ADDED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml:14:25-66
 category#android.intent.category.LAUNCHER
-ADDED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml:16:17-77
+ADDED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml:15:17-77
 	android:name
-		ADDED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml:16:27-74
+		ADDED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml:15:27-74
+activity#at.ms.MyPreferenceActivity
+ADDED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml:18:9-25:20
+	android:label
+		ADDED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml:20:13-48
+	android:name
+		ADDED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml:19:13-49
+intent-filter#android.intent.action.VIEW+android.intent.category.PREFERENCE
+ADDED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml:21:13-24:29
+action#android.intent.action.VIEW
+ADDED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml:22:17-69
+	android:name
+		ADDED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml:22:25-66
+category#android.intent.category.PREFERENCE
+ADDED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml:23:17-79
+	android:name
+		ADDED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml:23:27-76
 uses-sdk
 INJECTED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 	android:targetSdkVersion

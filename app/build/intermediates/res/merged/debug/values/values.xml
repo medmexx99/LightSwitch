@@ -1,7 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">LightSwitch</string>
-    <string name="hello_world">Hello world!</string>
+    <string-array name="listArray">
+        <item>name1</item><item>name2</item><item>name3</item></string-array>
+    <string-array name="listValues"><item>value1</item><item>value2</item><item>value3</item></string-array>
+    <string name="app_name">Licht Schalter</string>
+    <string name="configuration">Konfiguration</string>
+    <string name="couch">Couch</string>
+    <string name="description_network_settings">Konfigurieren der IP-Adresse und Port der Lichtschalter-Servers</string>
+    <string name="diningTable">Esstisch</string>
+    <string name="network_address">Netzwerk Adresse</string>
+    <string name="network_port">Server Port</string>
+    <string name="options">Optionen</string>
+    <string name="preferences">Einstellungen</string>
+    <string name="prompt_network_address">Netzwerk Adresse des Lichtschalters ein</string>
+    <string name="prompt_network_port">Port des zugehörigen Servers </string>
+    <string name="title_network_settings">Einstellungen für die Lichtschalter</string>
     <style name="AppTheme" parent="@android:style/Theme.Holo.Light">
 	</style>
 </resources>

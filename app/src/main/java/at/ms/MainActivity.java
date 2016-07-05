@@ -1,16 +1,28 @@
 package at.ms;
 
-import android.app.*;
-import android.graphics.*;
-import android.graphics.drawable.*;
-import android.os.*;
-import android.view.*;
-import android.widget.*;
-import java.io.*;
-import java.net.*;
 
-public class MainActivity extends Activity 
-{
+import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
+import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.InetAddress;
+import java.net.Socket;
+import java.net.UnknownHostException;
+
+public class MainActivity extends Activity {
 	Button btCo1;
 	Button btCo2;
 	Button btEt1;
@@ -31,23 +43,30 @@ public class MainActivity extends Activity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-//		btCo1 = (Button) findViewById(R.id.btCoLampe1);
-//		//ShapeDrawable shape = (ShapeDrawable) btCo1.getBackground();
-//		//shape.getPaint().setColor(Color.BLACK);
-//		//btCo1.setBackgroundColor(Color.BLACK);
-//		btCo1.setTextColor(Color.parseColor("#8792F2"));
-//		btCo2 = (Button) findViewById(R.id.btCoLampe2);
-//		btCo2.setBackgroundColor(Color.BLACK);
-//		btCo2.setTextColor(Color.parseColor("#8792F2"));
-//		btEt1 = (Button) findViewById(R.id.btEtLampe1);
-//		btEt1.setBackgroundColor(Color.BLACK);
-//		btEt1.setTextColor(Color.parseColor("#8792F2"));
-//		btEt2 = (Button) findViewById(R.id.btEtLampe2);
-//    	btEt2.setBackgroundColor(Color.BLACK);
-//		btEt2.setTextColor(Color.parseColor("#8792F2"));
+    }
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.main_menu, menu);
+		return true;
 	}
 
-	public void switchLampe(View view) {
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()){
+            case R.id.mainMenuOptions:
+                return true;
+            case R.id.mainMenuConfiguration:
+                Intent i = new Intent(this, MyPreferenceActivity.class);
+                startActivity(i);
+                return true;
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+ 	public void switchLampe(View view) {
 
 		if(view instanceof Button) {
 			Button button = (Button)view;
@@ -139,9 +158,8 @@ public class MainActivity extends Activity
 	}
 */
 
-	private void getStatus() {
+    private void getStatus() {
 		Socket client;
-		
 
 		try{
 			InetAddress clientAddress = InetAddress.getByName("192.168.0.150");
