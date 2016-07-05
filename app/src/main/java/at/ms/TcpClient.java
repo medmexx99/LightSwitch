@@ -1,17 +1,30 @@
 package at.ms;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.InetAddress;
-import java.net.Socket;
-import java.net.UnknownHostException;
+import android.os.*;
+import java.io.*;
+import java.net.*;
 
 /**
  * Created by Mex on 04.07.2016.
  */
-public class TcpClient {
+public class TcpClient extends AsyncTask<Object,Void,String>
+{
+
+	@Override
+	protected String doInBackground(Object[] p1)
+	{
+		if(p1.length >= 3 &&
+			p1[0] instanceof InetAddress &&
+		   p1[1] instanceof Integer &&
+		   p1[2] instanceof String) {
+			   
+		   }
+		   
+		return send((InetAddress)p1[0],
+					(Integer)p1[1],
+					(String)p1[2]);
+	}
+
 
     private static TcpClient instance = null;
 
@@ -90,7 +103,10 @@ public class TcpClient {
 
         } catch(IOException e) {
             System.out.println("No I/O");
-        }
+        } catch (Exception e) {
+			System.out.println("Unknown exception:");
+			e.printStackTrace();
+		}
 
         return response;
     }

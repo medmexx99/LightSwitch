@@ -24,6 +24,7 @@ import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import android.os.*;
 
 public class MainActivity extends Activity {
 	Button btCo1;
@@ -91,9 +92,21 @@ public class MainActivity extends Activity {
 						InetAddress server = InetAddress.getByName(getSettingsFor(KEY_network_address_couch));
 						lightPort = Integer.parseInt(getSettingsFor(KEY_network_port_couch));
 						String message = "{\"switchLights\":{\""+lightId+"\":\""+(lightState ? "ON" : "OFF")+"\"}}";
-						String response = TcpClient.getInstance().send(server,lightPort,message);
-						JSONObject status = new JSONObject(response);
-						JSONObject light1 = status.getJSONObject("light1");
+						String response = "";
+						TcpClient.getInstance().execute(server,lightPort,message);
+						while(TcpClient.getInstance().getStatus()==AsyncTask.Status.RUNNING){
+							try
+							{
+								Thread.sleep(50);
+							}
+							catch (InterruptedException e)
+							{}
+						}
+						if(TcpClient.getInstance().getStatus()==AsyncTask.Status.FINISHED){
+							JSONObject status = new JSONObject(response);
+							JSONObject light1 = status.getJSONObject("light1");
+						}
+						
 					} catch (UnknownHostException e) {
 						e.printStackTrace();
 					} catch (JSONException e) {
