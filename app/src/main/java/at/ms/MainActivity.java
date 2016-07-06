@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -16,6 +17,7 @@ import android.widget.Button;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -25,6 +27,8 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import android.os.*;
+import android.widget.ScrollView;
+import android.widget.TextView;
 
 public class MainActivity extends Activity implements AsyncTaskCallbacks {
 	Button btCo1;
@@ -57,11 +61,14 @@ public class MainActivity extends Activity implements AsyncTaskCallbacks {
 		btEt1 = (Button) findViewById(R.id.btEtLampe1);
 		btEt2 = (Button) findViewById(R.id.btEtLampe2);
 
+		((TextView)findViewById(R.id.receiveTextView)).setMovementMethod(new ScrollingMovementMethod());
+		((TextView)findViewById(R.id.sendTextView)).setMovementMethod(new ScrollingMovementMethod());
+
 		//init button state for couch
 		try {
 			InetAddress server = InetAddress.getByName(getSettingsFor(KEY_network_address_couch));
 			int port = Integer.parseInt(getSettingsFor(KEY_network_port_couch));
-			String message = "{\"getstatus\"}";
+			String message = "{\"requestStatus\":\"dummy\"}";
 			String switchingLamp = "Couch";
 			TcpClient client = new TcpClient(this);
 			client.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, server,port,message,switchingLamp);
@@ -73,7 +80,7 @@ public class MainActivity extends Activity implements AsyncTaskCallbacks {
 		try {
 			InetAddress server = InetAddress.getByName(getSettingsFor(KEY_network_address_diningtable));
 			int port = Integer.parseInt(getSettingsFor(KEY_network_port_diningtable));
-			String message = "{\"getstatus\"}";
+			String message = "{\"requestStatus\":\"dummy\"}";
 			String switchingLamp = "diningtable";
 			TcpClient client = new TcpClient(this);
 			client.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, server,port,message,switchingLamp);
@@ -109,53 +116,23 @@ public class MainActivity extends Activity implements AsyncTaskCallbacks {
 		if(view instanceof Button) {
 			Button button = (Button)view;
 			int id = button.getId();
+			boolean lightState = ((String)button.getText()).equalsIgnoreCase("ON") ? true : false;
 			switch(id) {
 				case btCo1Id:
-					switchLamp("light1", bCoLampe1, KEY_network_address_couch, KEY_network_port_couch, "Couch");
+					switchLamp("light1", !lightState, KEY_network_address_couch, KEY_network_port_couch, "Couch");
 					break;
 				case btCo2Id:
-					switchLamp("light2", bCoLampe1, KEY_network_address_couch, KEY_network_port_couch, "Couch");
+					switchLamp("light2", !lightState, KEY_network_address_couch, KEY_network_port_couch, "Couch");
 					break;
 				case btEt1Id:
-					switchLamp("light1", bCoLampe1, KEY_network_address_diningtable, KEY_network_port_diningtable, "diningtable");
+					switchLamp("light1", !lightState, KEY_network_address_diningtable, KEY_network_port_diningtable, "diningtable");
 					break;
 				case btEt2Id:
-					switchLamp("light2", bCoLampe1, KEY_network_address_diningtable, KEY_network_port_diningtable, "diningtable");
+					switchLamp("light2", !lightState, KEY_network_address_diningtable, KEY_network_port_diningtable, "diningtable");
 					break;
 				default:
 					break;
 			}
-/*
-			if (lightState) {
-				//button.setTextColor(Color.parseColor("#8792F2"));
-				//btCo1.setBackgroundColor(Color.BLACK);
-				GradientDrawable shape = (GradientDrawable) button.getBackground();
-				shape.setColor(Color.WHITE);
-				lightState = false;
-			} else {
-				//button.setTextColor(Color.BLACK);
-				//btCo1.setBackgroundColor(Color.parseColor("#FFEF4F"));
-				GradientDrawable shape = (GradientDrawable) button.getBackground();
-				shape.setColor(Color.parseColor("#FFEF4F"));
-				lightState = true;
-			}
-			switch(id) {
-				case btCo1Id:
-					bCoLampe1 = lightState;
-					break;
-				case btCo2Id:
-					bCoLampe2 = lightState;
-					break;
-				case btEt1Id:
-					bEtLampe1 = lightState;
-					break;
-				case btEt2Id:
-					bEtLampe2 = lightState;
-					break;
-				default:
-					break;
-			}
-*/
 		}
 	}
 
@@ -164,8 +141,9 @@ public class MainActivity extends Activity implements AsyncTaskCallbacks {
 		try {
             InetAddress server = InetAddress.getByName(getSettingsFor(key_ip));
             lightPort = Integer.parseInt(getSettingsFor(key_port));
-            String message = "{\"switchLights\":{\""+lightId+"\":\""+(!lightState ? "ON" : "OFF")+"\"}}";
-
+            String message = "{\"switchLights\":{\""+lightId+"\":\""+(lightState ? "ON" : "OFF")+"\"}}";
+			TextView sendTextView = (TextView) findViewById(R.id.sendTextView);
+			sendTextView.append(switchingLamp + " switchingLamp :" + message + "\r\n");
             TcpClient client = new TcpClient(this);
             client.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, server,lightPort,message,switchingLamp);
         } catch (UnknownHostException e) {
@@ -179,61 +157,6 @@ public class MainActivity extends Activity implements AsyncTaskCallbacks {
 		result = sharedPreferences.getString(key, null);
 		return result;
 	}
-	
-/*
-	public void switchCoLampe2(View view) {
-		
-		if(bCoLampe2) {
-			btCo2.setTextColor(Color.parseColor("#8792F2"));
-			btCo2.setBackgroundColor(Color.BLACK);
-			bCoLampe2=false;}
-		else {
-			btCo2.setTextColor(Color.BLACK);
-			btCo2.setBackgroundColor(Color.parseColor("#FFEF4F"));
-			bCoLampe2=true;}
-	}
-	
-	public void switchEtLampe1(View view) {
-		
-		if(bEtLampe1) {
-			btEt1.setTextColor(Color.parseColor("#8792F2"));
-			btEt1.setBackgroundColor(Color.BLACK);
-			bEtLampe1=false;}
-		else {
-			btEt1.setTextColor(Color.BLACK);
-			btEt1.setBackgroundColor(Color.parseColor("#FFEF4F"));
-			bEtLampe1=true;}
-	}
-
-	public void switchEtLampe2(View view) {
-		
-		if(bEtLampe2) {
-			btEt2.setTextColor(Color.parseColor("#8792F2"));
-			btEt2.setBackgroundColor(Color.BLACK);
-			bEtLampe2=false;}
-		else {
-			btEt2.setTextColor(Color.BLACK);
-			btEt2.setBackgroundColor(Color.parseColor("#FFEF4F"));
-			bEtLampe2=true;}
-	}
-*/
-
-    private void getStatus() {
-		Socket client;
-
-		try{
-			InetAddress clientAddress = InetAddress.getByName("192.168.0.150");
-			client = new Socket(clientAddress, 80);
-			PrintWriter out = new PrintWriter(client.getOutputStream(),true);
-			BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
-
-		} catch(UnknownHostException e) {
-			System.out.println("Unknown host: www.example.com");
-
-		} catch(IOException e) {
-			System.out.println("No I/O");
-		}
-	}
 
 	@Override
 	public void onTaskCompleted(String response, String switchingLamp) {
@@ -242,10 +165,19 @@ public class MainActivity extends Activity implements AsyncTaskCallbacks {
 		String light1 = null;
 		String light2 = null;
 
+		TextView receiveTextView = (TextView) findViewById(R.id.receiveTextView);
+		if(response != null && response.length() > 0) {
+			if(switchingLamp != null && switchingLamp.length() > 0) {
+				receiveTextView.append("\r\nswitchingLamp: " + switchingLamp + " response:\r\n");
+			}
+			receiveTextView.append(response + "\r\n");
+		}
+
 		if(response != null && response.length() > 0 && switchingLamp != null && switchingLamp.length() > 0) {
 			try {
 				all = new JSONObject(response);
 				status = all.getJSONObject("status");
+
 				light1 = status.getString("light1");
 				light2 = status.getString("light2");
 

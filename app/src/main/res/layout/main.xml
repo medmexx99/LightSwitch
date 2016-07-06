@@ -102,9 +102,11 @@
 		android:layout_weight=".30"
 		android:id="@+id/sendTextView"
 		android:text="sendTextView"
-		android:layout_margin="2dp"
-		android:background="@drawable/roundedborder"
-
+		android:layout_margin="6dp"
+		android:padding="6dp"
+		android:background="@drawable/roundedborder_in"
+		android:scrollbars="vertical"
+		android:gravity="bottom"
 		/>
 
 	<TextView
@@ -113,9 +115,11 @@
 		android:layout_weight=".30"
 		android:id="@+id/receiveTextView"
 		android:text="receiveTextView"
-		android:layout_margin="2dp"
-		android:background="@drawable/roundedborder"
-
+		android:layout_margin="6dp"
+		android:padding="6dp"
+		android:background="@drawable/roundedborder_out"
+		android:scrollbars="vertical"
+		android:gravity="bottom"
 		/>
 
 </LinearLayout>
