@@ -23,17 +23,18 @@ public final class R {
         public static final int btCoLampe2=0x7f090004;
         public static final int btEtLampe1=0x7f090001;
         public static final int btEtLampe2=0x7f090002;
-        public static final int couch=0x7f090007;
-        public static final int diningTable=0x7f09000a;
+        public static final int couch=0x7f090008;
+        public static final int diningTable=0x7f09000b;
         public static final int esstischTextView=0x7f090000;
-        public static final int ipCouch=0x7f090008;
-        public static final int ipDiningTable=0x7f09000b;
-        public static final int mainMenuConfiguration=0x7f09000e;
-        public static final int mainMenuOptions=0x7f09000d;
-        public static final int portCouch=0x7f090009;
-        public static final int portDiningTable=0x7f09000c;
-        public static final int receiveTextView=0x7f090006;
-        public static final int sendTextView=0x7f090005;
+        public static final int ipCouch=0x7f090009;
+        public static final int ipDiningTable=0x7f09000c;
+        public static final int mainMenuConfiguration=0x7f09000f;
+        public static final int mainMenuOptions=0x7f09000e;
+        public static final int portCouch=0x7f09000a;
+        public static final int portDiningTable=0x7f09000d;
+        public static final int progressBar=0x7f090005;
+        public static final int receiveTextView=0x7f090007;
+        public static final int sendTextView=0x7f090006;
     }
     public static final class layout {
         public static final int main=0x7f030000;

@@ -27,7 +27,7 @@
 				android:id="@+id/esstischTextView"
 				/>
 
-			<ToggleButton
+			<Button
 				android:layout_height="wrap_content"
 				android:layout_width="wrap_content"
 				android:text="Lampe 1"
@@ -38,7 +38,7 @@
 				android:layout_margin="5dp"
 				/>
 
-			<ToggleButton
+			<Button
 				android:layout_height="wrap_content"
 				android:layout_width="wrap_content"
 				android:text="Lampe 2"
@@ -64,7 +64,7 @@
 				android:layout_gravity="center_horizontal"
 				/>
 
-			<ToggleButton
+			<Button
 				android:layout_height="wrap_content"
 				android:layout_width="wrap_content"
 				android:text="Lampe 1"
@@ -75,7 +75,7 @@
 				android:background="@drawable/roundedborder"
 				/>
 
-			<ToggleButton
+			<Button
 				android:layout_height="wrap_content"
 				android:layout_width="wrap_content"
 				android:text="Lampe 2"
@@ -89,6 +89,12 @@
 		</LinearLayout>
 
 	</LinearLayout>
+
+	<ProgressBar
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:visibility="invisible"
+		android:id="@+id/progressBar" />
 
 	<TextView
 		android:layout_height="0dp"

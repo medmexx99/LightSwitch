@@ -26,7 +26,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import android.os.*;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements AsyncTaskCallbacks {
 	Button btCo1;
 	Button btCo2;
 	Button btEt1;
@@ -52,7 +52,36 @@ public class MainActivity extends Activity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-    }
+		btCo1 = (Button) findViewById(R.id.btCoLampe1);
+		btCo2 = (Button) findViewById(R.id.btCoLampe2);
+		btEt1 = (Button) findViewById(R.id.btEtLampe1);
+		btEt2 = (Button) findViewById(R.id.btEtLampe2);
+
+		//init button state for couch
+		try {
+			InetAddress server = InetAddress.getByName(getSettingsFor(KEY_network_address_couch));
+			int port = Integer.parseInt(getSettingsFor(KEY_network_port_couch));
+			String message = "{\"getstatus\"}";
+			String switchingLamp = "Couch";
+			TcpClient client = new TcpClient(this);
+			client.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, server,port,message,switchingLamp);
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		}
+
+		//init button state for diningtable
+		try {
+			InetAddress server = InetAddress.getByName(getSettingsFor(KEY_network_address_diningtable));
+			int port = Integer.parseInt(getSettingsFor(KEY_network_port_diningtable));
+			String message = "{\"getstatus\"}";
+			String switchingLamp = "diningtable";
+			TcpClient client = new TcpClient(this);
+			client.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, server,port,message,switchingLamp);
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		}
+
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -80,52 +109,23 @@ public class MainActivity extends Activity {
 		if(view instanceof Button) {
 			Button button = (Button)view;
 			int id = button.getId();
-			boolean lightState = false;
-			String lightServer = "";
-			int lightPort = 80;
-			String lightId = "";
 			switch(id) {
 				case btCo1Id:
-					lightState = bCoLampe1;
-					lightId = "light1";
-					try {
-						InetAddress server = InetAddress.getByName(getSettingsFor(KEY_network_address_couch));
-						lightPort = Integer.parseInt(getSettingsFor(KEY_network_port_couch));
-						String message = "{\"switchLights\":{\""+lightId+"\":\""+(lightState ? "ON" : "OFF")+"\"}}";
-						String response = "";
-						TcpClient.getInstance().execute(server,lightPort,message);
-						while(TcpClient.getInstance().getStatus()==AsyncTask.Status.RUNNING){
-							try
-							{
-								Thread.sleep(50);
-							}
-							catch (InterruptedException e)
-							{}
-						}
-						if(TcpClient.getInstance().getStatus()==AsyncTask.Status.FINISHED){
-							JSONObject status = new JSONObject(response);
-							JSONObject light1 = status.getJSONObject("light1");
-						}
-						
-					} catch (UnknownHostException e) {
-						e.printStackTrace();
-					} catch (JSONException e) {
-						e.printStackTrace();
-					}
-
+					switchLamp("light1", bCoLampe1, KEY_network_address_couch, KEY_network_port_couch, "Couch");
 					break;
 				case btCo2Id:
-					lightState = bCoLampe2;
+					switchLamp("light2", bCoLampe1, KEY_network_address_couch, KEY_network_port_couch, "Couch");
 					break;
 				case btEt1Id:
-					lightState = bEtLampe1;
+					switchLamp("light1", bCoLampe1, KEY_network_address_diningtable, KEY_network_port_diningtable, "diningtable");
 					break;
 				case btEt2Id:
-					lightState = bEtLampe2;
+					switchLamp("light2", bCoLampe1, KEY_network_address_diningtable, KEY_network_port_diningtable, "diningtable");
 					break;
 				default:
 					break;
 			}
+/*
 			if (lightState) {
 				//button.setTextColor(Color.parseColor("#8792F2"));
 				//btCo1.setBackgroundColor(Color.BLACK);
@@ -155,7 +155,22 @@ public class MainActivity extends Activity {
 				default:
 					break;
 			}
+*/
 		}
+	}
+
+	private void switchLamp(String lightId, boolean lightState, String key_ip, String key_port, String switchingLamp) {
+		int lightPort;
+		try {
+            InetAddress server = InetAddress.getByName(getSettingsFor(key_ip));
+            lightPort = Integer.parseInt(getSettingsFor(key_port));
+            String message = "{\"switchLights\":{\""+lightId+"\":\""+(!lightState ? "ON" : "OFF")+"\"}}";
+
+            TcpClient client = new TcpClient(this);
+            client.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, server,lightPort,message,switchingLamp);
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
 	}
 
 	private String getSettingsFor(String key) {
@@ -219,5 +234,71 @@ public class MainActivity extends Activity {
 			System.out.println("No I/O");
 		}
 	}
-	
+
+	@Override
+	public void onTaskCompleted(String response, String switchingLamp) {
+		JSONObject all = null;
+		JSONObject status = null;
+		String light1 = null;
+		String light2 = null;
+
+		if(response != null && response.length() > 0 && switchingLamp != null && switchingLamp.length() > 0) {
+			try {
+				all = new JSONObject(response);
+				status = all.getJSONObject("status");
+				light1 = status.getString("light1");
+				light2 = status.getString("light2");
+
+				boolean l1state = light1.equalsIgnoreCase("on") ? true : false;
+				boolean l2state = light2.equalsIgnoreCase("on") ? true : false;
+
+				if (switchingLamp.equalsIgnoreCase("couch")) {
+					setButtonState(l1state, btCo1);
+					setButtonState(l2state, btCo2);
+				} else if (switchingLamp.equalsIgnoreCase("diningtable")) {
+					setButtonState(l1state, btEt1);
+					setButtonState(l2state, btEt2);
+				}
+
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+		}
+		else if(switchingLamp != null && switchingLamp.length() > 0) {
+			if (switchingLamp.equalsIgnoreCase("couch")) {
+				setButtonStateUndefined(btCo1);
+				setButtonStateUndefined(btCo2);
+			} else if (switchingLamp.equalsIgnoreCase("diningtable")) {
+				setButtonStateUndefined(btEt1);
+				setButtonStateUndefined(btEt2);
+			}
+		}
+	}
+
+	private void setButtonState(boolean l1state, Button button) {
+		if (l1state) {
+            GradientDrawable shape = (GradientDrawable) button.getBackground();
+            shape.setColor(Color.parseColor("#FFEF4F"));
+			button.setText("ON");
+            bCoLampe1 = true;
+        } else {
+            GradientDrawable shape = (GradientDrawable) button.getBackground();
+            shape.setColor(Color.WHITE);
+			button.setText("OFF");
+            bCoLampe1 = false;
+        }
+	}
+
+	private void setButtonStateUndefined(Button button) {
+			GradientDrawable shape = (GradientDrawable) button.getBackground();
+			shape.setColor(Color.parseColor("#FF0088"));
+			button.setText("??");
+			bCoLampe1 = true;
+	}
+
+
+	@Override
+	public void onProgressUpdate(int status) {
+
+	}
 }
