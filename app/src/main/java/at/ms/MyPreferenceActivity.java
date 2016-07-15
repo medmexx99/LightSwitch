@@ -17,7 +17,8 @@ import java.util.Map;
 
 public class MyPreferenceActivity extends Activity
 {
-    @Override
+	
+	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Display the fragment as the main content.

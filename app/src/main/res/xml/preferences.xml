@@ -22,4 +22,13 @@
             android:defaultValue="80"
             android:summary="@string/prompt_network_port"/>
     </PreferenceCategory>
+	<PreferenceCategory
+		android:title="@string/options_category">
+		<CheckBoxPreference
+            android:key="option_show_messages"
+            android:title="@string/option_show_messages"
+            android:summaryOn="@string/tcp_output_on" 
+            android:summaryOff="@string/tcp_output_off"
+			/>
+	</PreferenceCategory>
 </PreferenceScreen>

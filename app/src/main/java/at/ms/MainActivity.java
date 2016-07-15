@@ -45,11 +45,15 @@ public class MainActivity extends Activity implements AsyncTaskCallbacks {
 	final int btCo2Id = R.id.btCoLampe2;
 	final int btEt1Id = R.id.btEtLampe1;
 	final int btEt2Id = R.id.btEtLampe2;
+	
+	TextView recTv;
+	TextView sendTv;
 
 	public static final String KEY_network_address_couch = "network_address_couch";
 	public static final String KEY_network_port_couch = "network_port_couch";
 	public static final String KEY_network_address_diningtable = "network_address_diningtable";
 	public static final String KEY_network_port_diningtable = "network_port_diningtable";
+	public static final String KEY_option_show_messages = "option_show_messages";
 
 	@Override
     protected void onCreate(Bundle savedInstanceState)
@@ -60,34 +64,76 @@ public class MainActivity extends Activity implements AsyncTaskCallbacks {
 		btCo2 = (Button) findViewById(R.id.btCoLampe2);
 		btEt1 = (Button) findViewById(R.id.btEtLampe1);
 		btEt2 = (Button) findViewById(R.id.btEtLampe2);
+		recTv = ((TextView)findViewById(R.id.receiveTextView));
+		sendTv = ((TextView)findViewById(R.id.sendTextView));
+		init();
 
-		((TextView)findViewById(R.id.receiveTextView)).setMovementMethod(new ScrollingMovementMethod());
-		((TextView)findViewById(R.id.sendTextView)).setMovementMethod(new ScrollingMovementMethod());
+	}
+
+	private void init() throws NumberFormatException
+	{
+		if (getBoolSettingsFor(KEY_option_show_messages))
+		{
+			sendTv.setMovementMethod(new ScrollingMovementMethod());
+			recTv.setMovementMethod(new ScrollingMovementMethod());
+			sendTv.setVisibility(View.VISIBLE);
+			recTv.setVisibility(View.VISIBLE);
+		}
+		else
+		{
+			sendTv.setMovementMethod(new ScrollingMovementMethod());
+			recTv.setMovementMethod(new ScrollingMovementMethod());
+			sendTv.setVisibility(View.GONE);
+			recTv.setVisibility(View.GONE);
+		}
+
+
 
 		//init button state for couch
-		try {
+		try
+		{
 			InetAddress server = InetAddress.getByName(getSettingsFor(KEY_network_address_couch));
 			int port = Integer.parseInt(getSettingsFor(KEY_network_port_couch));
 			String message = "{\"requestStatus\":\"dummy\"}";
 			String switchingLamp = "Couch";
 			TcpClient client = new TcpClient(this);
-			client.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, server,port,message,switchingLamp);
-		} catch (UnknownHostException e) {
+			client.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, server, port, message, switchingLamp);
+		}
+		catch (UnknownHostException e)
+		{
 			e.printStackTrace();
 		}
 
 		//init button state for diningtable
-		try {
+		try
+		{
 			InetAddress server = InetAddress.getByName(getSettingsFor(KEY_network_address_diningtable));
 			int port = Integer.parseInt(getSettingsFor(KEY_network_port_diningtable));
 			String message = "{\"requestStatus\":\"dummy\"}";
 			String switchingLamp = "diningtable";
 			TcpClient client = new TcpClient(this);
-			client.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, server,port,message,switchingLamp);
-		} catch (UnknownHostException e) {
+			client.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, server, port, message, switchingLamp);
+		}
+		catch (UnknownHostException e)
+		{
 			e.printStackTrace();
 		}
+	}
 
+	@Override
+	protected void onResume()
+	{
+		// TODO: Implement this method
+		super.onResume();
+		init();
+	}
+
+	@Override
+	public void onWindowFocusChanged(boolean hasFocus)
+	{
+		// TODO: Implement this method
+		super.onWindowFocusChanged(hasFocus);
+		init();
 	}
 
 	@Override
@@ -155,6 +201,13 @@ public class MainActivity extends Activity implements AsyncTaskCallbacks {
 		String result = "";
 		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 		result = sharedPreferences.getString(key, null);
+		return result;
+	}
+	
+	private Boolean getBoolSettingsFor(String key){
+		boolean result = false;
+		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+		result = sharedPreferences.getBoolean(key, false);
 		return result;
 	}
 

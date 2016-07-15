@@ -12,6 +12,7 @@ import android.preference.PreferenceGroup;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import android.preference.*;
 
 /**
  * Created by Mex on 05.07.2016.
