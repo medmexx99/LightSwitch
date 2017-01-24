@@ -10,10 +10,14 @@
     <string name="diningTable">Esstisch</string>
     <string name="network_address">Netzwerk Adresse</string>
     <string name="network_port">Server Port</string>
+    <string name="option_show_messages">Show TCP messages</string>
     <string name="options">Optionen</string>
+    <string name="options_category">Optionen</string>
     <string name="preferences">Einstellungen</string>
     <string name="prompt_network_address">Netzwerk Adresse des Lichtschalters ein</string>
     <string name="prompt_network_port">Port des zugehörigen Servers </string>
+    <string name="tcp_output_off">Tcp messages are NOT output to text boxes</string>
+    <string name="tcp_output_on">Tcp messages are output to text boxes</string>
     <string name="title_network_settings">Einstellungen für die Lichtschalter</string>
     <style name="AppTheme" parent="@android:style/Theme.Holo.Light">
 	</style>

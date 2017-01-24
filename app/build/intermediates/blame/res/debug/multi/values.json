@@ -180,8 +180,27 @@
                     "startLine": 12,
                     "startColumn": 4,
                     "startOffset": 710,
+                    "endColumn": 66,
+                    "endOffset": 772
+                },
+                "from": {
+                    "file": "G:\\AndroidProjects\\LightSwitch\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 15,
+                        "startColumn": 1,
+                        "startOffset": 855,
+                        "endColumn": 63,
+                        "endOffset": 917
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 13,
+                    "startColumn": 4,
+                    "startOffset": 777,
                     "endColumn": 44,
-                    "endOffset": 750
+                    "endOffset": 817
                 },
                 "from": {
                     "file": "G:\\AndroidProjects\\LightSwitch\\app\\src\\main\\res\\values\\strings.xml",
@@ -196,11 +215,30 @@
             },
             {
                 "to": {
-                    "startLine": 13,
+                    "startLine": 14,
                     "startColumn": 4,
-                    "startOffset": 755,
+                    "startOffset": 822,
                     "endColumn": 53,
-                    "endOffset": 804
+                    "endOffset": 871
+                },
+                "from": {
+                    "file": "G:\\AndroidProjects\\LightSwitch\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 16,
+                        "startColumn": 1,
+                        "startOffset": 920,
+                        "endColumn": 50,
+                        "endOffset": 969
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 15,
+                    "startColumn": 4,
+                    "startOffset": 876,
+                    "endColumn": 53,
+                    "endOffset": 925
                 },
                 "from": {
                     "file": "G:\\AndroidProjects\\LightSwitch\\app\\src\\main\\res\\values\\strings.xml",
@@ -215,11 +253,11 @@
             },
             {
                 "to": {
-                    "startLine": 14,
+                    "startLine": 16,
                     "startColumn": 4,
-                    "startOffset": 809,
+                    "startOffset": 930,
                     "endColumn": 90,
-                    "endOffset": 895
+                    "endOffset": 1016
                 },
                 "from": {
                     "file": "G:\\AndroidProjects\\LightSwitch\\app\\src\\main\\res\\values\\strings.xml",
@@ -234,11 +272,11 @@
             },
             {
                 "to": {
-                    "startLine": 15,
+                    "startLine": 17,
                     "startColumn": 4,
-                    "startOffset": 900,
+                    "startOffset": 1021,
                     "endColumn": 77,
-                    "endOffset": 973
+                    "endOffset": 1094
                 },
                 "from": {
                     "file": "G:\\AndroidProjects\\LightSwitch\\app\\src\\main\\res\\values\\strings.xml",
@@ -253,11 +291,49 @@
             },
             {
                 "to": {
-                    "startLine": 16,
+                    "startLine": 18,
                     "startColumn": 4,
-                    "startOffset": 978,
+                    "startOffset": 1099,
+                    "endColumn": 84,
+                    "endOffset": 1179
+                },
+                "from": {
+                    "file": "G:\\AndroidProjects\\LightSwitch\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 18,
+                        "startColumn": 1,
+                        "startOffset": 1050,
+                        "endColumn": 81,
+                        "endOffset": 1130
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 19,
+                    "startColumn": 4,
+                    "startOffset": 1184,
+                    "endColumn": 79,
+                    "endOffset": 1259
+                },
+                "from": {
+                    "file": "G:\\AndroidProjects\\LightSwitch\\app\\src\\main\\res\\values\\strings.xml",
+                    "position": {
+                        "startLine": 17,
+                        "startColumn": 1,
+                        "startOffset": 972,
+                        "endColumn": 76,
+                        "endOffset": 1047
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 20,
+                    "startColumn": 4,
+                    "startOffset": 1264,
                     "endColumn": 86,
-                    "endOffset": 1060
+                    "endOffset": 1346
                 },
                 "from": {
                     "file": "G:\\AndroidProjects\\LightSwitch\\app\\src\\main\\res\\values\\strings.xml",
@@ -272,12 +348,12 @@
             },
             {
                 "to": {
-                    "startLine": 17,
+                    "startLine": 21,
                     "startColumn": 4,
-                    "startOffset": 1065,
-                    "endLine": 18,
+                    "startOffset": 1351,
+                    "endLine": 22,
                     "endColumn": 9,
-                    "endOffset": 1139
+                    "endOffset": 1425
                 },
                 "from": {
                     "file": "G:\\AndroidProjects\\LightSwitch\\app\\src\\main\\res\\values\\styles.xml",

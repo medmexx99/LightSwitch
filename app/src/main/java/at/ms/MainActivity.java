@@ -92,9 +92,13 @@ public class MainActivity extends Activity implements AsyncTaskCallbacks {
 		//init button state for couch
 		try
 		{
-			InetAddress server = InetAddress.getByName(getSettingsFor(KEY_network_address_couch));
-			int port = Integer.parseInt(getSettingsFor(KEY_network_port_couch));
-			String message = "{\"requestStatus\":\"dummy\"}";
+			String inetAddr = getSettingsFor(KEY_network_address_couch);
+			if(inetAddr == null) inetAddr = "192.168.0.50";
+			String portStr = getSettingsFor(KEY_network_port_couch);
+			if(portStr == null) portStr = "80";
+			InetAddress server = InetAddress.getByName(inetAddr);
+			int port = Integer.parseInt(portStr);
+			String message = "{\"command\":\"requestStatus\"}";
 			String switchingLamp = "Couch";
 			TcpClient client = new TcpClient(this);
 			client.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, server, port, message, switchingLamp);
@@ -107,9 +111,13 @@ public class MainActivity extends Activity implements AsyncTaskCallbacks {
 		//init button state for diningtable
 		try
 		{
-			InetAddress server = InetAddress.getByName(getSettingsFor(KEY_network_address_diningtable));
-			int port = Integer.parseInt(getSettingsFor(KEY_network_port_diningtable));
-			String message = "{\"requestStatus\":\"dummy\"}";
+			String inetAddr = getSettingsFor(KEY_network_address_diningtable);
+			if(inetAddr == null) inetAddr = "192.168.0.51";
+			String portStr = getSettingsFor(KEY_network_port_diningtable);
+			if(portStr == null) portStr = "80";
+			InetAddress server = InetAddress.getByName(inetAddr);
+			int port = Integer.parseInt(portStr);
+			String message = "{\"command\":\"requestStatus\"}";
 			String switchingLamp = "diningtable";
 			TcpClient client = new TcpClient(this);
 			client.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, server, port, message, switchingLamp);
@@ -187,7 +195,7 @@ public class MainActivity extends Activity implements AsyncTaskCallbacks {
 		try {
             InetAddress server = InetAddress.getByName(getSettingsFor(key_ip));
             lightPort = Integer.parseInt(getSettingsFor(key_port));
-            String message = "{\"switchLights\":{\""+lightId+"\":\""+(lightState ? "ON" : "OFF")+"\"}}";
+            String message = "{\"command\":\"switchLights\",\"parameters\":{\""+lightId+"\":\""+(lightState ? "ON" : "OFF")+"\"}}";
 			TextView sendTextView = (TextView) findViewById(R.id.sendTextView);
 			sendTextView.append(switchingLamp + " switchingLamp :" + message + "\r\n");
             TcpClient client = new TcpClient(this);
