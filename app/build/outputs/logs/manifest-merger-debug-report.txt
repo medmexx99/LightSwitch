@@ -1,18 +1,26 @@
 -- Merging decision tree log ---
 manifest
 ADDED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml:2:1-32:12
+INJECTED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml:2:1-32:12
+INJECTED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml:2:1-32:12
+INJECTED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml:2:1-32:12
+INJECTED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml:2:1-32:12
+INJECTED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml:2:1-32:12
+INJECTED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml:2:1-32:12
 	package
 		ADDED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml:3:5-20
 		INJECTED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml
 		INJECTED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml
+		ADDED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml:2:1-32:12
+		INJECTED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml
+	android:versionCode
+		INJECTED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml
+		ADDED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml:2:1-32:12
 		INJECTED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml:2:11-69
-	android:versionCode
-		INJECTED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml
-		INJECTED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml
 uses-permission#android.permission.INTERNET
 ADDED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml:5:5-67
 	android:name
@@ -21,10 +29,10 @@ application
 ADDED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml:7:5-30:19
 	android:label
 		ADDED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml:10:9-41
-	android:allowBackup
-		ADDED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml:8:9-35
 	android:icon
 		ADDED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml:9:9-45
+	android:allowBackup
+		ADDED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml:8:9-35
 	android:theme
 		ADDED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml:11:9-40
 activity#at.ms.MainActivity
@@ -65,9 +73,15 @@ ADDED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml:27:17
 		ADDED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml:27:27-76
 uses-sdk
 INJECTED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml
+INJECTED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml
+INJECTED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml
+INJECTED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml
 	android:targetSdkVersion
 		INJECTED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml
+		ADDED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml
 		INJECTED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml
 	android:minSdkVersion
 		INJECTED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml
+		ADDED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml
 		INJECTED from G:\AndroidProjects\LightSwitch\app\src\main\AndroidManifest.xml

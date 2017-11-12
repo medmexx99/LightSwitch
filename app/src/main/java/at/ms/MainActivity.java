@@ -45,7 +45,7 @@ public class MainActivity extends Activity implements AsyncTaskCallbacks {
 	final int btCo2Id = R.id.btCoLampe2;
 	final int btEt1Id = R.id.btEtLampe1;
 	final int btEt2Id = R.id.btEtLampe2;
-	
+
 	TextView recTv;
 	TextView sendTv;
 
@@ -53,6 +53,8 @@ public class MainActivity extends Activity implements AsyncTaskCallbacks {
 	public static final String KEY_network_port_couch = "network_port_couch";
 	public static final String KEY_network_address_diningtable = "network_address_diningtable";
 	public static final String KEY_network_port_diningtable = "network_port_diningtable";
+	public static final String KEY_network_address_z5500 = "network_address_z5500";
+	public static final String KEY_network_port_z5500 = "network_port_z5500";
 	public static final String KEY_option_show_messages = "option_show_messages";
 
 	@Override
@@ -190,6 +192,83 @@ public class MainActivity extends Activity implements AsyncTaskCallbacks {
 		}
 	}
 
+	public void irRemote(View view) {
+
+		if(view instanceof Button) {
+			Button button = (Button)view;
+			int id = button.getId();
+			switch(id) {
+				case R.id.irPower:
+					sendIrCommand(KEY_network_address_z5500, KEY_network_port_z5500, getResources().getString(R.string.irPower));
+					break;
+				case R.id.irVolumeUp:
+					sendIrCommand(KEY_network_address_z5500, KEY_network_port_z5500, getResources().getString(R.string.irVolumeUp));
+					break;
+				case R.id.irVolumeDown:
+					sendIrCommand(KEY_network_address_z5500, KEY_network_port_z5500, getResources().getString(R.string.irVolumeDown));
+					break;
+				case R.id.irDirect:
+					sendIrCommand(KEY_network_address_z5500, KEY_network_port_z5500, getResources().getString(R.string.irDirect));
+					break;
+				case R.id.irOptical:
+					sendIrCommand(KEY_network_address_z5500, KEY_network_port_z5500, getResources().getString(R.string.irOptical));
+					break;
+				case R.id.irCoax:
+					sendIrCommand(KEY_network_address_z5500, KEY_network_port_z5500, getResources().getString(R.string.irCoax));
+					break;
+				case R.id.irEffect:
+					sendIrCommand(KEY_network_address_z5500, KEY_network_port_z5500, getResources().getString(R.string.irEffect));
+					break;
+				case R.id.irSettings:
+					sendIrCommand(KEY_network_address_z5500, KEY_network_port_z5500, getResources().getString(R.string.irSettings));
+					break;
+				case R.id.irSubUp:
+					sendIrCommand(KEY_network_address_z5500, KEY_network_port_z5500, getResources().getString(R.string.irSubUp));
+					break;
+				case R.id.irSubDown:
+					sendIrCommand(KEY_network_address_z5500, KEY_network_port_z5500, getResources().getString(R.string.irSubDown));
+					break;
+				case R.id.irCenterUp:
+					sendIrCommand(KEY_network_address_z5500, KEY_network_port_z5500, getResources().getString(R.string.irCenterUp));
+					break;
+				case R.id.irCenterDown:
+					sendIrCommand(KEY_network_address_z5500, KEY_network_port_z5500, getResources().getString(R.string.irCenterDown));
+					break;
+				case R.id.irSurroundUp:
+					sendIrCommand(KEY_network_address_z5500, KEY_network_port_z5500, getResources().getString(R.string.irSurroundUp));
+					break;
+				case R.id.irSurroundDown:
+					sendIrCommand(KEY_network_address_z5500, KEY_network_port_z5500, getResources().getString(R.string.irSurroundDown));
+					break;
+				case R.id.irMute:
+					sendIrCommand(KEY_network_address_z5500, KEY_network_port_z5500, getResources().getString(R.string.irMuteDown));
+					break;
+				case R.id.irTest:
+					sendIrCommand(KEY_network_address_z5500, KEY_network_port_z5500, getResources().getString(R.string.irTest));
+					break;
+				default:
+					break;
+			}
+		}
+	}
+
+	private void sendIrCommand(String key_ip, String key_port, String command) {
+		int lightPort;
+		try {
+			InetAddress server = InetAddress.getByName(getSettingsFor(key_ip));
+			lightPort = Integer.parseInt(getSettingsFor(key_port));
+			command = getResources().getString(R.string.irZ5500id) + command;
+			String message = "{\"command\":\"irCommand\",\"parameters\":{\"irc\":\""+command+"\"}}";
+			TextView sendTextView = (TextView) findViewById(R.id.sendTextView);
+			sendTextView.setText("");
+			sendTextView.append(" irRemote :" + message + "\r\n");
+			TcpClient client = new TcpClient(this);
+			client.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, server, lightPort, message, "test");
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		}
+	}
+
 	private void switchLamp(String lightId, boolean lightState, String key_ip, String key_port, String switchingLamp) {
 		int lightPort;
 		try {
@@ -197,6 +276,7 @@ public class MainActivity extends Activity implements AsyncTaskCallbacks {
             lightPort = Integer.parseInt(getSettingsFor(key_port));
             String message = "{\"command\":\"switchLights\",\"parameters\":{\""+lightId+"\":\""+(lightState ? "ON" : "OFF")+"\"}}";
 			TextView sendTextView = (TextView) findViewById(R.id.sendTextView);
+			sendTextView.setText("");
 			sendTextView.append(switchingLamp + " switchingLamp :" + message + "\r\n");
             TcpClient client = new TcpClient(this);
             client.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, server,lightPort,message,switchingLamp);
@@ -221,12 +301,14 @@ public class MainActivity extends Activity implements AsyncTaskCallbacks {
 
 	@Override
 	public void onTaskCompleted(String response, String switchingLamp) {
+
 		JSONObject all = null;
 		JSONObject status = null;
 		String light1 = null;
 		String light2 = null;
 
 		TextView receiveTextView = (TextView) findViewById(R.id.receiveTextView);
+		receiveTextView.setText("");
 		if(response != null && response.length() > 0) {
 			if(switchingLamp != null && switchingLamp.length() > 0) {
 				receiveTextView.append("\r\nswitchingLamp: " + switchingLamp + " response:\r\n");

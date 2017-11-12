@@ -14,13 +14,13 @@
 		<LinearLayout
 			android:layout_height="wrap_content"
 			android:layout_width="wrap_content"
-			android:layout_weight="0.5"
+			android:layout_weight="0.2"
 			android:orientation="vertical">
 
 			<TextView
 				android:layout_height="wrap_content"
 				android:layout_width="wrap_content"
-				android:layout_weight=".50"
+				android:layout_weight=".20"
 				android:textAppearance="?android:attr/textAppearanceLarge"
 				android:text="Esstisch"
 				android:layout_gravity="center_horizontal"
@@ -53,7 +53,7 @@
 		<LinearLayout
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_weight="0.5"
+			android:layout_weight="0.2"
 			android:orientation="vertical">
 
 			<TextView
@@ -90,37 +90,235 @@
 
 	</LinearLayout>
 
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:padding="5dp"
+        android:orientation="vertical"
+		android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Sound Fernbedienung"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/irPower"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="2dp"
+                android:background="@drawable/ir_button"
+                android:onClick="irRemote"
+                android:text="Power" />
+
+            <Button
+                android:id="@+id/irDirect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="2dp"
+                android:background="@drawable/ir_button"
+                android:onClick="irRemote"
+                android:text="Direct" />
+
+            <Button
+                android:id="@+id/irOptical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="2dp"
+                android:background="@drawable/ir_button"
+                android:onClick="irRemote"
+                android:text="Optical" />
+
+            <Button
+                android:id="@+id/irCoax"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="2dp"
+                android:background="@drawable/ir_button"
+                android:onClick="irRemote"
+                android:text="Coax" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/irVolumeUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="2dp"
+                android:background="@drawable/ir_button"
+                android:onClick="irRemote"
+                android:text="Vol+" />
+
+            <Button
+                android:id="@+id/irCenterUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="2dp"
+                android:background="@drawable/ir_button"
+                android:onClick="irRemote"
+                android:text="Center+" />
+
+            <Button
+                android:id="@+id/irSurroundUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="2dp"
+                android:background="@drawable/ir_button"
+                android:onClick="irRemote"
+                android:text="Sur+" />
+
+
+            <Button
+                android:id="@+id/irSubUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="2dp"
+                android:background="@drawable/ir_button"
+                android:onClick="irRemote"
+                android:text="Sub+" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/irVolumeDown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="2dp"
+                android:background="@drawable/ir_button"
+                android:onClick="irRemote"
+                android:text="Vol-" />
+
+            <Button
+                android:id="@+id/irCenterDown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="2dp"
+                android:background="@drawable/ir_button"
+                android:onClick="irRemote"
+                android:text="Center-" />
+
+            <Button
+                android:id="@+id/irSurroundDown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="2dp"
+                android:background="@drawable/ir_button"
+                android:onClick="irRemote"
+                android:text="Sur-" />
+
+
+            <Button
+                android:id="@+id/irSubDown"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="2dp"
+                android:background="@drawable/ir_button"
+                android:onClick="irRemote"
+                android:text="Sub-" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/irEffect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="2dp"
+                android:background="@drawable/ir_button"
+                android:onClick="irRemote"
+                android:text="Effect" />
+
+            <Button
+                android:id="@+id/irSettings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="2dp"
+                android:background="@drawable/ir_button"
+                android:onClick="irRemote"
+                android:text="Settings" />
+
+            <Button
+                android:id="@+id/irMute"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="2dp"
+                android:background="@drawable/ir_button"
+                android:onClick="irRemote"
+                android:text="Mute" />
+
+
+            <Button
+                android:id="@+id/irTest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="2dp"
+                android:background="@drawable/ir_button"
+                android:onClick="irRemote"
+                android:text="Test" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
 	<ProgressBar
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:visibility="invisible"
 		android:id="@+id/progressBar" />
 
-	<TextView
-		android:layout_height="0dp"
-		android:layout_width="match_parent"
-		android:layout_weight=".30"
-		android:id="@+id/sendTextView"
-		android:text="sendTextView"
-		android:layout_margin="6dp"
-		android:padding="6dp"
-		android:background="@drawable/roundedborder_in"
-		android:scrollbars="vertical"
-		android:gravity="bottom"
-		/>
+    <TextView
+        android:id="@+id/sendTextView"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_margin="6dp"
+        android:layout_weight=".20"
+        android:background="@drawable/roundedborder_in"
+        android:gravity="bottom"
+        android:padding="6dp"
+        android:scrollbars="vertical"
+        android:text="sendTextView" />
 
-	<TextView
-		android:layout_height="0dp"
-		android:layout_width="match_parent"
-		android:layout_weight=".30"
-		android:id="@+id/receiveTextView"
-		android:text="receiveTextView"
-		android:layout_margin="6dp"
-		android:padding="6dp"
-		android:background="@drawable/roundedborder_out"
-		android:scrollbars="vertical"
-		android:gravity="bottom"
-		/>
+    <TextView
+        android:id="@+id/receiveTextView"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_margin="6dp"
+        android:layout_weight=".20"
+        android:background="@drawable/roundedborder_out"
+        android:gravity="bottom"
+        android:padding="6dp"
+        android:scrollbars="vertical"
+        android:text="receiveTextView" />
 
 </LinearLayout>
 

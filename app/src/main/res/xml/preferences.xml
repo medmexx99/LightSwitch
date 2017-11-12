@@ -4,7 +4,7 @@
         android:title="@string/couch">
     <EditTextPreference android:title="@string/network_address"
         android:key="network_address_couch"
-        android:defaultValue="192.168.0.150"
+        android:defaultValue="192.168.0.45"
         android:summary="@string/prompt_network_address"/>
     <EditTextPreference android:title="@string/network_port"
         android:key="network_port_couch"
@@ -15,10 +15,21 @@
         android:title="@string/diningTable">
         <EditTextPreference android:title="@string/network_address"
             android:key="network_address_diningtable"
-            android:defaultValue="192.168.0.151"
+            android:defaultValue="192.168.0.59"
             android:summary="@string/prompt_network_address"/>
         <EditTextPreference android:title="@string/network_port"
             android:key="network_port_diningtable"
+            android:defaultValue="80"
+            android:summary="@string/prompt_network_port"/>
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="@string/z5500Remote">
+        <EditTextPreference android:title="@string/network_address"
+            android:key="network_address_z5500"
+            android:defaultValue="192.168.0.55"
+            android:summary="@string/prompt_network_address"/>
+        <EditTextPreference android:title="@string/network_port"
+            android:key="network_port_z5500"
             android:defaultValue="80"
             android:summary="@string/prompt_network_port"/>
     </PreferenceCategory>

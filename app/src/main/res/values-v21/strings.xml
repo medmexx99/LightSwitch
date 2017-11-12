@@ -5,6 +5,7 @@
     <string name="configuration">Konfiguration</string>
     <string name="diningTable">Esstisch</string>
     <string name="couch">Couch</string>
+    <string name="z5500Remote">Sound Steuerung</string>
     <string name="description_network_settings">Konfigurieren der IP-Adresse und Port der Lichtschalter-Servers</string>
     <string name="title_network_settings">Einstellungen für die Lichtschalter</string>
     <string name="network_address">Netzwerk Adresse</string>
@@ -12,4 +13,10 @@
     <string name="network_port">Server Port</string>
     <string name="prompt_network_port">Port des zugehörigen Servers </string>
     <string name="preferences">Einstellungen</string>
+    <string name="option_show_messages">Show TCP messages</string>
+    <string name="options_category">Optionen</string>
+    <string name="tcp_output_on">Tcp messages are output to text boxes</string>
+    <string name="tcp_output_off">Tcp messages are NOT output to text boxes</string>
+    <string name="irPower">08F7</string>
+    <string name="irVolumeUp">58A7</string>
 </resources>
